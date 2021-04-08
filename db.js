@@ -1,8 +1,15 @@
-const { Sequelize } = require('sequelize');
-
-const db = new Sequelize('jbhomeremodeling', 'postgres', 'password', {
+const Sequelize = require('sequelize');
+const sequelize = new Sequelize('jbhomeremodeling', 'postgres', 'password', {
     host: 'localhost',
-    dialect: 'postgres',
+    dialect: 'postgres'
 });
 
-module.exports = db;
+sequelize.authenticate().then(
+    function() {
+        console.log('Connected to journal-walkthrough postgres database');
+    },
+    function(err){
+        console.log(err);
+    }
+);
+module.exports = sequelize;

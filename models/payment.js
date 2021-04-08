@@ -2,13 +2,17 @@ const { DataTypes } = require("sequelize");
 const db = require("../db");
 
 const Payment = db.define("payment", {
-    username: {
-        type: DataTypes.STRING(100),
+    projectid: {
+        type: DataTypes.NUMBER,
         allowNull: false,
         unique: true,
     },
-    password: {
-        type: DataTypes.STRING,
+    dateofpayment: {
+        type: DataTypes.DATEONLY,
+        allowNull: false,
+    },
+    amount: {
+        type: DataTypes.INTEGER,
         allowNull: false,
     },
     });

@@ -2,12 +2,16 @@ const { DataTypes } = require("sequelize");
 const db = require("../db");
 
 const Project = db.define("project", {
-username: {
-    type: DataTypes.STRING(100),
+projectid: {
+    type: DataTypes.NUMBER,
     allowNull: false,
     unique: true,
 },
-password: {
+ownerid: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+},
+duration: {
     type: DataTypes.STRING,
     allowNull: false,
 },

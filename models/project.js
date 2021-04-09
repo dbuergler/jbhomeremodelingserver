@@ -1,20 +1,15 @@
-const { DataTypes } = require("sequelize");
-const db = require("../db");
+module.exports = (sequelize, DataTypes) => {
+    const Project = (sequelize.define("project", {
+    projectid: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        unique: true,
+    },
+    duration: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    }));
+    return Project; 
+}
 
-const Project = db.define("project", {
-projectid: {
-    type: DataTypes.NUMBER,
-    allowNull: false,
-    unique: true,
-},
-ownerid: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-},
-duration: {
-    type: DataTypes.STRING,
-    allowNull: false,
-},
-});
-
-module.exports = Project;

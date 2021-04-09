@@ -3,19 +3,22 @@ let express = require('express');
 let app = express();
 let sequelize = require('./db');
 
-const middlewares = require("./middleware");
-const controllers = require("./controllers");
+let project = require('./controllers/projectcontroller');
+let calendar = require('./controllers/calendarcontroller');
+let payment = require('./controllers/paymentcontroller');
+let user = require('./controllers/usercontroller');
 
 
 sequelize.sync();
-app.use(require('./middleware/cors'))
+
+app.use(require('./middleware/headers'))
 
 app.use(express.json());
 
-app.use("/user", controllers.User);
-app.use("/project", controllers.Project);
-app.use("/calendar", controllers.Calendar);
-app.use("/payment", controllers.Payment);
+app.use("/project", project);
+app.use("/calendar", calendar);
+app.use("/payment", payment);
+app.use("/user", user);
 
 
 app.listen(3000, function (){

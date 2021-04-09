@@ -1,13 +1,13 @@
 const router = require('express').Router();
-const { User } = require('../models');
-const jwt = require("jsonwebtoken")
+const User = require('../db').import('../models/user');
+const jwt = require("jsonwebtoken");
 const bcrypt = require('bcryptjs');
 
 router.post('/create', function(req, res) {
 
     User.create({
-        FirstName: req.body.FirstName,
-        LastName: req.body.LastName,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
         username: req.body.username,
         password: bcrypt.hashSync(req.body.password, 13),
         role: req.body.role 
@@ -35,7 +35,7 @@ router.post('/login', function (req, res) {
     })
     .then(function loginSuccess(user){
         if (user) {
-            bcrypt.compare(req.body.password, user.passwordhash, function (
+            bcrypt.compare(req.body.password, user.password, function (
             err,
             matches
             ) {

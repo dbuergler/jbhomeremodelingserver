@@ -1,29 +1,32 @@
-const { DataTypes } = require("sequelize");
-const db = require("../db");
-
-const Calendar = db.define("calendar", {
-    projectid: {
-        type: DataTypes.NUMBER,
-        allowNull: false,
-        unique: true,
-    },
-    ownerid: {
-        type: DataTypes.NUMBER,
-        allowNull: false,
-        unique: true,
-    },
-    description: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    location: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    date: {
-        type: DataTypes.DATEONLY,
-        allowNull: false,
-    },
-    });
+module.exports = (sequelize, DataTypes) => {
+    const Calendar = (sequelize.define("calendar", {
+        firstName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true
+        },
+        lastName: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        projectName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        description: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        location: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        date: {
+            type: DataTypes.DATEONLY,
+            allowNull: false,
+        },
+        }));
+        return Calendar;
+}
     
-    module.exports = Calendar;
+    

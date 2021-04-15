@@ -1,13 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
     const Project = (sequelize.define("project", {
-    projectid: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        unique: true,
-    },
     duration: {
         type: DataTypes.STRING,
         allowNull: false,
+    },
+    projectId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     },
     }));
     return Project; 

@@ -1,9 +1,17 @@
 module.exports = (sequelize, DataTypes) => {
     const Payment = (sequelize.define("payment", {
-        projectid: {
-            type: DataTypes.INTEGER,
+        firstName: {
+            type: DataTypes.STRING,
             allowNull: false,
-            unique: true,
+            unique: true
+        },
+        lastName: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        projectName: {
+            type: DataTypes.STRING,
+            allowNull: false,
         },
         dateofpayment: {
             type: DataTypes.DATEONLY,
@@ -13,6 +21,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        }));
+    }));
         return Payment;
 }

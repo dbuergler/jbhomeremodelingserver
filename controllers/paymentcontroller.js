@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Payment = require('../db').import('../models/payment');
+const validateAdmin = require('../middleware/validate-admin');
 let validateSession = require('../middleware/validate-session');
 
 router.post('/create', validateSession, (req, res) => {
@@ -9,15 +10,21 @@ router.post('/create', validateSession, (req, res) => {
         projectName: req.body.projectName,
         amount: req.body.amount,
         dateofpayment: req.body.dateofpayment,
-        userId: req.user.id
+        userId: req.user.id,
     }
     Payment.create(paymentEntry)
     .then(payment => res.status(200).json(payment))
     .catch(err => res.status(500).json({error: err}))
 })
 
+router.get("/", (req, res) => {
+    Payment.findAll()
+    .then(payments => res.status(200).json(payments))
+    .catch(err => res.status(500).json({error: err}))
+});
 
-router.get('/Id', validateSession, (req, res) => {
+
+router.get('/:id', validateSession, (req, res) => {
     let userid = req.user.id
     Payment.findAll({
         where: { userId: userid}
@@ -26,25 +33,25 @@ router.get('/Id', validateSession, (req, res) => {
     .catch(err => res.status(500).json({error: err}))
 });
 
-router.put('/update/Id', validateSession, function (req, res) {
+router.put('/:id', validateSession, function (req, res) {
     const updatepaymentEntry = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         projectName: req.body.projectName,
         amount: req.body.amount,
         dateofpayment: req.body.dateofpayment,
-        userId: req.user.id
+        userId: req.user.id,
     };
 
-    const query = { where: { id: req.params.userid, user: req.user.id}};
+    const query = { where: { id: req.params.id, userId: req.user.id}};
 
     Payment.update(updatepaymentEntry, query)
     .then(payments => res.status(200).json(payments))
     .catch(err => res.status(500).json({error: err}))
 });
 
-router.delete("/delete/:id", validateSession, function (req, res){
-    const query = { where: { id: req.params.id, user: req.user.id}};
+router.delete("/:id", validateSession, validateAdmin, function (req, res){
+    const query = { where: { id: req.params.id, userId: req.user.id}};
 
     Payment.destroy(query)
     .then(() => res.status(200).json({ message: "Payment Entry Removed"}))

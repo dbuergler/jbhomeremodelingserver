@@ -24,6 +24,10 @@ module.exports = (sequelize, DataTypes) => {
         date: {
             type: DataTypes.DATEONLY,
             allowNull: false,
+        }, 
+        projectId: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         },
         }));
         return Calendar;

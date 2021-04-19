@@ -68,7 +68,7 @@ router.post('/login', function (req, res) {
 //*Get All users*//
 router.get("/", validateSession, validateAdmin, (req, res) => {
     User.findAll()
-    .then(calendars => res.status(200).json(calendars))
+    .then(users => res.status(200).json(users))
     .catch(err => res.status(500).json({error: err}))
 });
 

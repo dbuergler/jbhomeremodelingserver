@@ -5,11 +5,12 @@ let validateSession = require('../middleware/validate-session');
 
 router.post('/create', validateSession, (req, res) => {
     const paymentEntry= {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        projectName: req.body.projectName,
+        address: req.body.address,
+        city: req.body.city,
+        state: req.body.state,
+        zipcode: req.body.zipcode,
+        name: req.body.name,
         amount: req.body.amount,
-        dateofpayment: req.body.dateofpayment,
         userId: req.user.id,
     }
     Payment.create(paymentEntry)
@@ -35,11 +36,12 @@ router.get('/:id', validateSession, (req, res) => {
 
 router.put('/:id', validateSession, function (req, res) {
     const updatepaymentEntry = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        projectName: req.body.projectName,
+        address: req.body.address,
+        city: req.body.city,
+        state: req.body.state,
+        zipcode: req.body.zipcode,
+        name: req.body.name,
         amount: req.body.amount,
-        dateofpayment: req.body.dateofpayment,
         userId: req.user.id,
     };
 

@@ -1,13 +1,33 @@
 module.exports = (sequelize, DataTypes) => {
     const Project = (sequelize.define("project", {
-    duration: {
+        firstName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        lastName: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        projectName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        description: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        location: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        date: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        }, 
+        duration: {
         type: DataTypes.STRING,
         allowNull: false,
-    },
-    projectId: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
+        },
     }));
     return Project; 
 }

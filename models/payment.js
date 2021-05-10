@@ -1,24 +1,28 @@
 module.exports = (sequelize, DataTypes) => {
     const Payment = (sequelize.define("payment", {
-        firstName: {
+        address: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true
         },
-        lastName: {
+        city: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        projectName: {
+        state: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        dateofpayment: {
-            type: DataTypes.DATEONLY,
+        zipcode: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        name: {
+            type: DataTypes.STRING,
             allowNull: false,
         },
         amount: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
         },
     }));

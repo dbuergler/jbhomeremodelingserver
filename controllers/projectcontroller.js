@@ -5,8 +5,13 @@ let validateSession = require('../middleware/validate-session');
 
 router.post('/create', validateSession, (req, res) => {
     const projectEntry= {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        projectName: req.body.projectName,
+        description: req.body.description,
+        location: req.body.location,
+        date: req.body.date,
         duration: req.body.duration,
-        projectId: req.body.projectId,
         userId: req.user.id
     }
     Project.create(projectEntry)
@@ -29,10 +34,16 @@ router.get('/:id', validateSession, (req, res) => {
     .catch(err => res.status(500).json({error: err}))
 });
 
-router.put('/:id', validateSession, validateAdmin, function (req, res) {
+router.put('/:id', validateSession, function (req, res) {
     const updateprojectEntry = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        projectName: req.body.projectName,
+        description: req.body.description,
+        location: req.body.location,
+        date: req.body.date,
         duration: req.body.duration,
-        projectId: req.body.projectId,
+        
     };
 
     const query = { where: { id: req.params.id, userId: req.user.id}};

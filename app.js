@@ -21,6 +21,6 @@ app.use("/payment", payment);
 app.use("/user", user);
 
 
-app.listen(3000, function (){
-    console.log("App is listening on port 3000");
+app.listen(process.env.PORT, () => {
+    console.log(`Server is listening on ${process.env.PORT}`);
 });

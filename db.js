@@ -7,13 +7,10 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
             require: true,
             rejectedUnauthorized: false,
         }
-    // dialectOptions: {
-    //     ssl: {
-    //         sslmode: 'require',
-    //         rejectedUnauthorized: false,
-    //     }
     }   
 });
+
+
 
 sequelize.authenticate().then(
     function() {

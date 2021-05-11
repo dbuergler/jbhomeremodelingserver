@@ -73,10 +73,10 @@ router.get("/", validateSession, validateAdmin, (req, res) => {
 });
 
 //*GET ENTRIES BY USER*//
-router.get('/:id', validateSession, validateAdmin, (req, res) => {
+router.get('/account', validateSession,  (req, res) => {
     let userid = req.user.id
     User.findAll({
-        where: { userId: userid},
+        where: { id: userid},
         includes: "User"
     })
     .then(users => res.status(200).json(users))
